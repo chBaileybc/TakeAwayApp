@@ -4,17 +4,46 @@ using System.Collections.Generic;
 namespace TakeAwayApp
 {
     //Global Variables
-    static List<string> OrderOne = new List<string>();
 
+    //Methods and/or functions
     class Program
     {
         
         //When run/main process
         static void Main(string[] args)
         {
+            List<List<int>> food = new List<List<int>>();
+
+            food.Add(new List<int> { 1, 2, 3 });
+            food.Add(new List<int> { 4, 5, 6 });
+            food.Add(new List<int> { 6, 7, 8, 9});
+            food.Add(new List<int> { 10, 11, 12});
+
+            foreach (var list in food)
+            {
+                
+            }
+
+            //food[1] = "Ham & cheese";
+            //food[2] = "Beef & onion";
+            //food[3] = "Hawaiian";
+            //food[4] = "Vegetarian";
+            //food[5] = "Pepperoni";
+            //food[6] = "Margherita";
+            //food[7] = "Chicken BBQ";
+            //food[8] = "Buffalo chicken";
+            //food[9] = "Neapolitan";
+            //food[10] = "Chicken Cranberry";
+            //food[11] = "Hot & Spicy Veggie";
+            //food[12] = "Cheesy Garlic";
+
             string flagMain = "";
             while (!flagMain.Equals("XXX"))
             {
+                CheckFlag();
+
+                CheckPizza();
+
                 OneOrder();
 
                 Console.WriteLine("Press <Enter> to finish ordering or press 'XXX' to cancel");
@@ -46,8 +75,8 @@ namespace TakeAwayApp
 
                     return pizzaName;
                 }
-
                 Console.WriteLine("Error: Please enter a number for a pizza you may like");
+                Console.Clear();
 
             }
         }
@@ -77,14 +106,6 @@ namespace TakeAwayApp
 
         static void OneOrder()
         {
-
-            List<string> OrderOne = new List<string>() 
-            {"1. Ham & cheese","2. Beef & onion","3. Hawaiian","4. Vegetarian","5. Pepperoni",
-             "6. Margherita","7. Chicken BBQ","8. Buffalo chicken","9. Neapolitan","10. Chicken Cranberry", 
-             "11. Hot & Spicy Veggie", "12. Cheesy Garlic" };
-
-            
-
             //Display order type
 
             Console.WriteLine();
@@ -107,17 +128,6 @@ namespace TakeAwayApp
                 + "12. Cheesy Garlic\n\n"
                 + ">------------------------------------------<"
                 );
-
-            //Enter and store pizza name
-            Console.WriteLine("Enter a number of the pizza flavour the you want choose:\n");
-            Console.ReadLine();
-
-            //Loop(while) until the user has chosen a minimum of 5 pizzas or until the user finishes ordering
-
-            while (true)
-            {
-
-            }
             
         }
     }
