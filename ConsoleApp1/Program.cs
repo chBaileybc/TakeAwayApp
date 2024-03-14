@@ -6,11 +6,18 @@ namespace TakeAwayApp
    
     class Program
     {
-        //Global Variables
+       //Global Variables
 
-        static List<string> deliveryChoice = new List<string>(){"Delivery", "Pickup"};
+        //Delivery selection list
+        static List<string> deliveryChoice = new List<string>()
+        {"Delivery", "Pickup"};
+
+        //Pizza Selection list
+        static List<string> pizzaChoice = new List<string>()
+        {"1. Ham & cheese", "2. Beef & onion", "3. Hawaiian", "4. Vegetarian", "5. Pepperoni", "6. Margherita"
+            , "7. Chicken BBQ", "8. Buffalo chicken", "9. Neapolitan", "10. Chicken Cranberry", "11. Hot & Spicy Veggie", "12. Cheesy Garlic"};
         
-        //Methods and/or functions  
+       //Methods and/or functions  
         static int CheckInt(string question, int min, int max)
         {
             while (true)
@@ -23,7 +30,10 @@ namespace TakeAwayApp
                     if ((userInt < 1) || (userInt > 2))
                     {
                         //Display an error message letting th euser know it's too low/High what they have entered
-                        Console.WriteLine("\nError:Enter a number 1-2 for recieving your order");
+                        Console.WriteLine("\nError:Enter a number 1-2 for recieving your order "+
+                            "| Please press enter to try again");
+                        Console.ReadLine();
+                        Console.Clear();
                     }
                     else
                     {
@@ -33,8 +43,41 @@ namespace TakeAwayApp
 
                 catch (System.FormatException)
                 {
-                    //Display an error message letting user know that intergers can only be enetred
-                    Console.WriteLine("\nError: Enter a number 1-2 for recieving your order");
+                    //Display an error message letting user know that intergers can only be entered
+                    Console.WriteLine("\nError: Enter a number 1-2 for recieving your order\n");
+                }
+
+                
+            }
+            
+        }
+
+        static int CheckPizza(string question, int min, int max) 
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(question);
+                    int userInt = Convert.ToInt32(Console.ReadLine());
+
+                    if ((userInt < 1) || (userInt > 12))
+                    {
+                        //Display an error message letting th euser know it's too low/High what they have entered
+                        Console.WriteLine("\nError:Enter a number 1-12 for recieving your order " +
+                            "| Please press enter to try again");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        return userInt;
+                    }
+                }
+                catch (System.FormatException)
+                {
+                    //Display an error message letting user know that intergers can only be entered
+                    Console.WriteLine("\nError: Enter a number 1-12 for selecting your pizza\n");
                 }
             }
         }
@@ -44,7 +87,7 @@ namespace TakeAwayApp
             while (true)
             {
                 //get user's choice
-                Console.WriteLine("Press <Enter> to restart your order or press 'XXX' to cancel");
+                Console.WriteLine("Press <Enter> to select more pizza's for your order or press 'XXX' to finish ordering");
                 string userInput = Console.ReadLine();
 
                 //Convert user input to uppercase
@@ -68,11 +111,15 @@ namespace TakeAwayApp
             int deliveryName = CheckInt("Please select a choice for recieving your order:\n1.Delivery\n2.Pickup\n", 1, 2);
 
             //Display delivery choice
-            Console.WriteLine($"\n{deliveryChoice[deliveryName - 1]}\n");
-            
-            //Display pizza menu and store choices
+            Console.WriteLine($"\nYou have selected: {deliveryChoice[deliveryName - 1]}\n");
 
-            Console.WriteLine("Please select pizza's that you want to order\n"
+            //Direct user to menu
+            Console.WriteLine("Press <Enter> to look at our menu\n");
+            Console.ReadLine();
+            Console.Clear();
+
+            //Display pizza menu and store choices
+            int pizzaSelection = CheckPizza("Type the number of the pizza you would want:\n"
             + "Dream Pizza menu\n"
             + ">------------------------------------------<\n\n"
             + "1. Ham & cheese\n"
@@ -88,8 +135,9 @@ namespace TakeAwayApp
             + "11. Hot & Spicy Veggie\n"
             + "12. Cheesy Garlic\n\n"
             + ">------------------------------------------<", 1, 12);
-
-            int pizzaName = Convert.ToInt32(Console.ReadLine());
+              
+            //Display customer's pizza selections
+            Console.WriteLine($"\nYou have selected: {pizzaChoice[pizzaSelection - 1]}");
 
         }
 
@@ -110,7 +158,6 @@ namespace TakeAwayApp
             Console.Clear();
 
             //Loop(while) OneOrder() until user types "XXX" or "xxx"
-
             string flagMain = "";
             while (!flagMain.Equals("XXX") || !flagMain.Equals(""))
             {
